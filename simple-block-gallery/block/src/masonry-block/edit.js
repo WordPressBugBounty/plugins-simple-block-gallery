@@ -85,6 +85,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					<hr />
 					<RangeControl
 						__nextHasNoMarginBottom
+						__next40pxDefaultSize
 						label = { __( 'Width', 'simple-block-gallery' ) }
 						max = { 1000 }
 						min = { 10 }
@@ -93,6 +94,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 					<RangeControl
 						__nextHasNoMarginBottom
+						__next40pxDefaultSize
 						label = { __( 'Space', 'simple-block-gallery' ) }
 						max = { 20 }
 						min = { 0 }
@@ -101,6 +103,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 					<RangeControl
 						__nextHasNoMarginBottom
+						__next40pxDefaultSize
 						label = { __( 'Rounded Images', 'simple-block-gallery' ) }
 						max = { 20 }
 						min = { 0 }

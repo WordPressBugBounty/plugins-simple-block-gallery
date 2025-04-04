@@ -83,6 +83,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				<PanelBody title = { __( 'Settings', 'simple-block-gallery' ) } initialOpen = { true }>
 					<RangeControl
 						__nextHasNoMarginBottom
+						__next40pxDefaultSize
 						label = { __( 'Interval', 'simple-block-gallery' ) }
 						max = { 30 }
 						min = { 1 }
