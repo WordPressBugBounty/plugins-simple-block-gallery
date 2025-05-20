@@ -33,13 +33,13 @@ export default function Edit( { attributes, setAttributes } ) {
 			j += '<style type="text/css">';
 			j += '@keyframes slidy' + image[0].id + ' { ' + slide_interval + '}';
 			j += 'div#slider' + image[0].id + ' { overflow: hidden; margin: 0 auto; padding: 0; }';
-			j += 'div#slider' + image[0].id + ' figure img { width: ' + 100 / image.length + '%;hight:auto; float: left; }';
+			j += 'div#slider' + image[0].id + ' figure img { width: ' + 100 / image.length + '%; hight: auto; float: left; }';
 			j += 'div#slider' + image[0].id + ' figure { position: relative; width: ' + 100 * image.length + '%; margin: 0; left: 0; text-align: left; font-size: 0; animation: ' + ( attributes.animation * image.length ) + 's slidy' + image[0].id + ' infinite; }';
 			j += '</style>';
 			j += '<div id="slider' + image[0].id + '">';
 			j += '<figure>';
 			for( let i in image ) {
-				j += '<img src="' + image[i].url + '">';
+				j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '">';
 			}
 			j += '</figure></div>';
 		}

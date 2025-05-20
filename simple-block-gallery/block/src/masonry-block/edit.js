@@ -35,7 +35,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			j += '</style>';
 			j += '<div id="masonry' + image[0].id + '">';
 			j += '<!-- wp:image {"lightbox":{"enabled":' + attributes.link + '},"id":' + image[i].id + ',"sizeSlug":"large","linkDestination":"none"} --><figure class="wp-block-image size-large">';
-			j += '<img src="' + image[i].url +'">';
+			j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '">';
 			j += '</figure><!-- /wp:image --></div>';
 		}
 		j += '</div>';

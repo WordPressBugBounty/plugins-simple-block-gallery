@@ -5,7 +5,7 @@ Tags: block, gallery, images, masonry, slider
 Requires at least: 6.6
 Requires PHP: 8.0
 Tested up to: 6.8
-Stable tag: 1.13
+Stable tag: 1.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,6 +44,9 @@ none
 3. Slider Block
 
 == Changelog ==
+
+= [1.14] 2025/05/20 =
+Fix – Problem with img tags not displaying alt attributes.
 
 = [1.13] 2025/04/04 =
 Fix – Rebuilt blocks.
