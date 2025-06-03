@@ -25,6 +25,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	function List_Images( image ) {
 		let j = '<!-- wp:paragraph -->';
 		if ( image ) {
+			let unique_id = getCurrentDateTimeID();
 			let slide_interval = '';
 			let base = Math.floor( 100 / image.length );
 			let base2 = base / 100;
@@ -45,12 +46,12 @@ export default function Edit( { attributes, setAttributes } ) {
 			}
 			slide_interval += ' 100% { left: 0%; }';
 			j += '<style type="text/css">';
-			j += '@keyframes slidy' + image[0].id + ' { ' + slide_interval + '}';
-			j += 'div#slider' + image[0].id + ' { overflow: hidden; margin: 0 auto; padding: 0; }';
-			j += 'div#slider' + image[0].id + ' figure img { width: ' + 100 / image.length + '%; hight: auto; float: left; }';
-			j += 'div#slider' + image[0].id + ' figure { position: relative; width: ' + 100 * image.length + '%; margin: 0; left: 0; text-align: left; font-size: 0; animation: ' + ( attributes.animation * image.length ) + 's slidy' + image[0].id + ' infinite; }';
+			j += '@keyframes slidy' + unique_id + ' { ' + slide_interval + '}';
+			j += 'div#slider' + unique_id + ' { overflow: hidden; margin: 0 auto; padding: 0; }';
+			j += 'div#slider' + unique_id + ' figure img { width: ' + 100 / image.length + '%; hight: auto; float: left; }';
+			j += 'div#slider' + unique_id + ' figure { position: relative; width: ' + 100 * image.length + '%; margin: 0; left: 0; text-align: left; font-size: 0; animation: ' + ( attributes.animation * image.length ) + 's slidy' + unique_id + ' infinite; }';
 			j += '</style>';
-			j += '<div id="slider' + image[0].id + '">';
+			j += '<div id="slider' + unique_id + '">';
 			j += '<figure>';
 			for( let i in image ) {
 				j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '">';
@@ -59,6 +60,19 @@ export default function Edit( { attributes, setAttributes } ) {
 		}
 		j += '<!-- /wp:paragraph -->';
 		return j;
+	}
+
+	function getCurrentDateTimeID() {
+
+		const now = new Date();
+		const year = now.getFullYear();
+		const month = String( now.getMonth() + 1 ).padStart( 2, '0' );
+		const day = String( now.getDate() ).padStart( 2, '0' );
+		const hours = String( now.getHours() ).padStart( 2, '0' );
+		const minutes = String( now.getMinutes() ).padStart( 2, '0' );
+		const seconds = String( now.getSeconds() ).padStart( 2, '0' );
+
+		return `${year}${month}${day}_${hours}${minutes}${seconds}`;
 	}
 
 	attributes.list_images = List_Images( attributes.image );
