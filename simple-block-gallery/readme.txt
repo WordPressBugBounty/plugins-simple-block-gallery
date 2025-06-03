@@ -5,7 +5,7 @@ Tags: block, gallery, images, masonry, slider
 Requires at least: 6.6
 Requires PHP: 8.0
 Tested up to: 6.8
-Stable tag: 1.14
+Stable tag: 1.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,17 +45,20 @@ none
 
 == Changelog ==
 
+= [1.15] 2025/06/03 =
+Fix - Adjustment of the speed at which the slider loops.
+
 = [1.14] 2025/05/20 =
-Fix – Problem with img tags not displaying alt attributes.
+Fix - Problem with img tags not displaying alt attributes.
 
 = [1.13] 2025/04/04 =
-Fix – Rebuilt blocks.
+Fix - Rebuilt blocks.
 
 = [1.12] 2024/11/18 =
-Fix – Rebuilt blocks.
+Fix - Rebuilt blocks.
 
 = [1.11] 2024/11/09 =
-Fix – Rebuilt blocks.
+Fix - Rebuilt blocks.
 
 = [1.10] 2024/07/04 =
 * Fix - Problem not working with WordPress 6.5. Rebuild with @wordpress/scripts 27.9.0.

@@ -26,10 +26,24 @@ export default function Edit( { attributes, setAttributes } ) {
 		let j = '<!-- wp:paragraph -->';
 		if ( image ) {
 			let slide_interval = '';
+			let base = Math.floor( 100 / image.length );
+			let base2 = base / 100;
+			let flame_1 = '';
+			let flame_2 = '';
 			for( let k = 0; k < image.length; k++ ) {
-				slide_interval += ( 100 / ( image.length - 1 ) ) * k + '%' + '{ left: -' + ( k * 100 ) + '%; } ';
-				slide_interval += ( 100 / ( image.length - 1 ) ) * ( k + 1 ) * 0.8 + '%' + '{ left: -' + ( k * 100 ) + '%; } ';
+				if ( 0 == k ) {
+					flame_1 = '0%';
+					flame_2 = base + '%';
+					slide_interval += flame_1 + '{ left: 0%; } ';
+					slide_interval += flame_2 + '{ left: 0%; } ';
+				} else {
+					flame_1 = base * k + base2 + '%';
+					flame_2 = base * k + base + '%';
+					slide_interval += flame_1 + '{ left: -' + ( k * 100 ) + '%; } ';
+					slide_interval += flame_2 + '{ left: -' + ( k * 100 ) + '%; } ';
+				}
 			}
+			slide_interval += ' 100% { left: 0%; }';
 			j += '<style type="text/css">';
 			j += '@keyframes slidy' + image[0].id + ' { ' + slide_interval + '}';
 			j += 'div#slider' + image[0].id + ' { overflow: hidden; margin: 0 auto; padding: 0; }';
