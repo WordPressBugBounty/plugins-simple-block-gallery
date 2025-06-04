@@ -5,7 +5,7 @@ Tags: block, gallery, images, masonry, slider
 Requires at least: 6.6
 Requires PHP: 8.0
 Tested up to: 6.8
-Stable tag: 1.16
+Stable tag: 1.20
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,10 @@ none
 3. Slider Block
 
 == Changelog ==
+
+= [1.20] 2025/06/04 =
+* Change - Transitions between parent and child blocks are made easier to understand.
+* Fix - Issue regarding display of the last image when there is an even number of images in the slider.
 
 = [1.16] 2025/06/03 =
 * Fix - Issues related to unique class names.

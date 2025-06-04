@@ -27,7 +27,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		if ( image ) {
 			let unique_id = getCurrentDateTimeID();
 			let slide_interval = '';
-			let base = Math.floor( 100 / image.length );
+			let base = Math.floor( 90 / image.length );
 			let base2 = base / 100;
 			let flame_1 = '';
 			let flame_2 = '';
@@ -54,7 +54,11 @@ export default function Edit( { attributes, setAttributes } ) {
 			j += '<div id="slider' + unique_id + '">';
 			j += '<figure>';
 			for( let i in image ) {
-				j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '">';
+				if ( 0 == i ) {
+					j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '" loading="eager">';
+				} else {
+					j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '" loading="lazy">';
+				}
 			}
 			j += '</figure></div>';
 		}
@@ -86,9 +90,16 @@ export default function Edit( { attributes, setAttributes } ) {
 		);
 	}
 
-	return (
-		<div { ...blockProps }>
-			<RawHTML>{ attributes.list_images }</RawHTML>
+	const media_upload = [];
+	media_upload.push(
+		<div className="simple-block-gallery-block-placeholder">
+			{ ! attributes.images_ids && (
+				<>
+					<div><strong>Simple Block Gallery</strong></div>
+					<div>{ __( 'Slider block', 'simple-block-gallery' ) }</div>
+					<div>{ __( 'Add your gallery here.', 'simple-block-gallery' ) }</div>
+				</>
+			) }
 			<MediaUploadCheck>
 				<MediaUpload
 					title = { __( 'Slider block', 'simple-block-gallery' ) }
@@ -106,9 +117,17 @@ export default function Edit( { attributes, setAttributes } ) {
 					) }
 				/>
 			</MediaUploadCheck>
+		</div>
+	);
 
+	return (
+		<div { ...blockProps }>
+			<RawHTML>{ attributes.list_images }</RawHTML>
+			{ media_upload }
 			<InspectorControls>
 				<PanelBody title = { __( 'Settings', 'simple-block-gallery' ) } initialOpen = { true }>
+					{ media_upload }
+					<hr />
 					<RangeControl
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize

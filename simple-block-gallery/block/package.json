@@ -1,6 +1,6 @@
 {
   "name": "simple-block-gallery",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Generate a Masonry or Slider gallery.",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "author": "Katsushi Kawamori",
   "license": "GPL-2.0-or-later",
   "dependencies": {
-    "@wordpress/i18n": "^5.24.0",
-    "@wordpress/scripts": "^30.17.0"
+    "@wordpress/i18n": "^5.25.0",
+    "@wordpress/scripts": "^30.18.0"
   }
 }

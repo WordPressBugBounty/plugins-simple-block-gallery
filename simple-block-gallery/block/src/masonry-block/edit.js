@@ -70,23 +70,33 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const media_upload = [];
 	media_upload.push(
-		<MediaUploadCheck>
-			<MediaUpload
-				title = { __( 'Masonry Block', 'simple-block-gallery' ) }
-				onSelect = { onUpdateImage }
-				allowedTypes = 'image'
-				gallery = { true }
-				multiple = { true }
-				value = { attributes.images_ids }
-				render = { ( { open } ) => (
-					<Button
-						variant = "secondary"
-						onClick = { open }>
-						{ ! attributes.images_ids ? __( 'Create Gallery', 'simple-block-gallery' ) : __( 'Update gallery', 'simple-block-gallery' ) }
-					</Button>
-				) }
-			/>
-		</MediaUploadCheck>
+		<div className="simple-block-gallery-block-placeholder">
+			{ ! attributes.images_ids && (
+				<>
+					<div><strong>Simple Block Gallery</strong></div>
+					<div>{ __( 'Masonry Block', 'simple-block-gallery' ) }</div>
+					<div>{ __( 'Add your gallery here.', 'simple-block-gallery' ) }</div>
+				</>
+			) }
+			<MediaUploadCheck>
+				<MediaUpload
+					title = { __( 'Masonry Block', 'simple-block-gallery' ) }
+					onSelect = { onUpdateImage }
+					allowedTypes = 'image'
+					gallery = { true }
+					multiple = { true }
+					value = { attributes.images_ids }
+					render = { ( { open } ) => (
+						<Button
+							variant = "secondary"
+							onClick = { open }
+						>
+							{ ! attributes.images_ids ? __( 'Create Gallery', 'simple-block-gallery' ) : __( 'Update gallery', 'simple-block-gallery' ) }
+						</Button>
+					) }
+				/>
+			</MediaUploadCheck>
+		</div>
 	);
 
 	return (

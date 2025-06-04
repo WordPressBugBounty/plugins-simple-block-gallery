@@ -1,6 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks';
 
-import './style.css';
+import './index.css';
 
 import Edit from './edit';
 import save from './save';
