@@ -5,7 +5,7 @@ Tags: block, gallery, images, masonry, slider
 Requires at least: 6.6
 Requires PHP: 8.0
 Tested up to: 6.8
-Stable tag: 1.20
+Stable tag: 1.21
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,9 @@ none
 3. Slider Block
 
 == Changelog ==
+
+= [1.21] 2025/06/05 =
+* Added - Delayed loading is now supported.
 
 = [1.20] 2025/06/04 =
 * Change - Transitions between parent and child blocks are made easier to understand.

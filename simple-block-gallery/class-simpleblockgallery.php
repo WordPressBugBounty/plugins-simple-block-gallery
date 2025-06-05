@@ -3,7 +3,7 @@
  * Plugin Name: Simple Block Gallery
  * Plugin URI:  https://wordpress.org/plugins/simple-block-gallery/
  * Description: Add the effect of Masonry and Slider to images.
- * Version:     1.20
+ * Version:     1.21
  * Author:      Katsushi Kawamori
  * Author URI:  https://riverforest-wp.info/
  * License:     GPLv2 or later
@@ -48,6 +48,27 @@ class SimpleBlockGallery {
 	public function __construct() {
 
 		add_action( 'init', array( $this, 'block_init' ) );
+
+		/* Add lazy load */
+		add_filter(
+			'wp_img_tag_add_loading_attr',
+			function ( $value, $image, $context ) {
+				static $image_count = 0;
+				if ( 'the_content' === $context ) {
+					$image_count++;
+					if ( 1 === $image_count ) {
+						return 'eager';
+					} else {
+						return 'lazy';
+					}
+				}
+			},
+			10,
+			3
+		);
+
+		/* Add img size for lazy load */
+		add_filter( 'render_block', array( $this, 'add_img_size_attributes' ), 10, 2 );
 	}
 
 	/** ==================================================
@@ -112,5 +133,44 @@ class SimpleBlockGallery {
 				'url' => esc_url( 'https://ps.w.org/simple-block-gallery/assets/screenshot-3.png' ),
 			)
 		);
+	}
+
+	/** ==================================================
+	 * Add img size for lazy load
+	 *
+	 * @param string $block_content  The block content.
+	 * @param array  $block  The full block, including name and attributes.
+	 * @return string $block_content  The block content.
+	 * @since 1.21
+	 */
+	public function add_img_size_attributes( $block_content, $block ) {
+		if ( 'core/image' === $block['blockName'] ) {
+			$block_content = preg_replace_callback(
+				'/<img([^>]+)>/',
+				function ( $matches ) {
+					$img_tag = $matches[0];
+					if ( strpos( $img_tag, 'width=' ) !== false || strpos( $img_tag, 'height=' ) !== false ) {
+						return $img_tag;
+					}
+					if ( preg_match( '/src="([^"]+)"/', $img_tag, $src_match ) ) {
+						$src = $src_match[1];
+						$attachment_id = attachment_url_to_postid( $src );
+						if ( $attachment_id ) {
+							$meta = wp_get_attachment_metadata( $attachment_id );
+							if ( $meta && isset( $meta['width'], $meta['height'] ) ) {
+								$img_tag = str_replace(
+									'<img',
+									'<img width="' . $meta['width'] . '" height="' . $meta['height'] . '"',
+									$img_tag
+								);
+							}
+						}
+					}
+					return $img_tag;
+				},
+				$block_content
+			);
+		}
+		return $block_content;
 	}
 }

@@ -48,16 +48,16 @@ export default function Edit( { attributes, setAttributes } ) {
 			j += '<style type="text/css">';
 			j += '@keyframes slidy' + unique_id + ' { ' + slide_interval + '}';
 			j += 'div#slider' + unique_id + ' { overflow: hidden; margin: 0 auto; padding: 0; }';
-			j += 'div#slider' + unique_id + ' figure img { width: ' + 100 / image.length + '%; hight: auto; float: left; }';
+			j += 'div#slider' + unique_id + ' figure img { width: ' + 100 / image.length + '%; height: auto; float: left; }';
 			j += 'div#slider' + unique_id + ' figure { position: relative; width: ' + 100 * image.length + '%; margin: 0; left: 0; text-align: left; font-size: 0; animation: ' + ( attributes.animation * image.length ) + 's slidy' + unique_id + ' infinite; }';
 			j += '</style>';
 			j += '<div id="slider' + unique_id + '">';
 			j += '<figure>';
 			for( let i in image ) {
 				if ( 0 == i ) {
-					j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '" loading="eager">';
+					j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '" width="' + image[i].sizes.full.width + '" height="' + image[i].sizes.full.height + '" loading="eager">';
 				} else {
-					j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '" loading="lazy">';
+					j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '" width="' + image[i].sizes.full.width + '" height="' + image[i].sizes.full.height + '" loading="lazy">';
 				}
 			}
 			j += '</figure></div>';
