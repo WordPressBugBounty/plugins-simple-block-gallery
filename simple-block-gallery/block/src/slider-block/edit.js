@@ -25,7 +25,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	function List_Images( image ) {
 		let j = '<!-- wp:paragraph -->';
 		if ( image ) {
-			let unique_id = getCurrentDateTimeID();
+			const unique_id = Math.floor( Math.random() * 90000 ) + 10000;
 			let slide_interval = '';
 			let base = Math.floor( 90 / image.length );
 			let base2 = base / 100;
@@ -64,19 +64,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		}
 		j += '<!-- /wp:paragraph -->';
 		return j;
-	}
-
-	function getCurrentDateTimeID() {
-
-		const now = new Date();
-		const year = now.getFullYear();
-		const month = String( now.getMonth() + 1 ).padStart( 2, '0' );
-		const day = String( now.getDate() ).padStart( 2, '0' );
-		const hours = String( now.getHours() ).padStart( 2, '0' );
-		const minutes = String( now.getMinutes() ).padStart( 2, '0' );
-		const seconds = String( now.getSeconds() ).padStart( 2, '0' );
-
-		return `${year}${month}${day}_${hours}${minutes}${seconds}`;
 	}
 
 	attributes.list_images = List_Images( attributes.image );

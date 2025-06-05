@@ -23,38 +23,26 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	function List_Images( image ) {
-		let unique_id = getCurrentDateTimeID();
+		const unique_id = Math.floor( Math.random() * 90000 ) + 10000;
 		let j = '<!-- wp:paragraph -->';
 		j += '<style type="text/css">';
-		j += '.simple-block-gallery-masonry' + unique_id + ' { columns: auto ' + attributes.width + 'px; column-gap: 0; margin: 0 auto; padding: 0; }';
+		j += '.simple-block-gallery-masonry' + unique_id + ' { display: block; columns: auto ' + attributes.width + 'px; column-gap: 0; padding: 0; }';
+		j += 'div.masonry' + unique_id + ' { display: block; padding-right: ' + attributes.padding + 'px; padding-bottom: ' + attributes.padding + 'px; margin: 0; line-height: 0; }';
+		j += 'div.masonry' + unique_id + ' img { max-width: 100%; height: auto; display: block; border-radius: ' + attributes.r_images + 'px; }';
 		j += '</style>';
 		j += '<div class="simple-block-gallery-masonry' + unique_id + '">';
 		for( let i in image ) {
-			j += '<style type="text/css">';
-			j += 'div#masonry' + unique_id + ' { display: block; padding-right: ' + attributes.padding + 'px; padding-bottom: ' + attributes.padding + 'px; margin: 0; line-height: 0; }';
-			j += 'div#masonry' + unique_id + ' img { max-width: 100%; height: auto; display: block; border-radius: ' + attributes.r_images + 'px; }';
-			j += '</style>';
-			j += '<div id="masonry' + unique_id + '">';
-			j += '<!-- wp:image {"lightbox":{"enabled":' + attributes.link + '},"id":' + image[i].id + ',"sizeSlug":"large","linkDestination":"none"} --><figure class="wp-block-image size-large">';
+			j += '<div class="masonry' + unique_id + '">';
+			j += '<!-- wp:image {"lightbox":{"enabled":' + attributes.link + '},"id":' + image[i].id + ',"sizeSlug":"large","linkDestination":"none"} -->';
+			j += '<figure class="wp-block-image size-large">';
 			j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '">';
-			j += '</figure><!-- /wp:image --></div>';
+			j += '</figure>';
+			j += '<!-- /wp:image -->';
+			j += '</div>';
 		}
 		j += '</div>';
 		j += '<!-- /wp:paragraph -->';
 		return j;
-	}
-
-	function getCurrentDateTimeID() {
-
-		const now = new Date();
-		const year = now.getFullYear();
-		const month = String( now.getMonth() + 1 ).padStart( 2, '0' );
-		const day = String( now.getDate() ).padStart( 2, '0' );
-		const hours = String( now.getHours() ).padStart( 2, '0' );
-		const minutes = String( now.getMinutes() ).padStart( 2, '0' );
-		const seconds = String( now.getSeconds() ).padStart( 2, '0' );
-
-		return `${year}${month}${day}_${hours}${minutes}${seconds}`;
 	}
 
 	attributes.list_images = List_Images( attributes.image );

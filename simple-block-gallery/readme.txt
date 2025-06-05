@@ -5,7 +5,7 @@ Tags: block, gallery, images, masonry, slider
 Requires at least: 6.6
 Requires PHP: 8.0
 Tested up to: 6.8
-Stable tag: 1.21
+Stable tag: 1.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,10 @@ none
 3. Slider Block
 
 == Changelog ==
+
+= [1.22] 2025/06/05 =
+* Fix - Fixed a problem with blank spaces at the bottom of images in the masonry gallery.
+* Fix - Fixed initial loading problem when editing multiple galleries.
 
 = [1.21] 2025/06/05 =
 * Added - Delayed loading is now supported.

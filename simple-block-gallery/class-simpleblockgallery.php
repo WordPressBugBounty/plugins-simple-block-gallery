@@ -3,7 +3,7 @@
  * Plugin Name: Simple Block Gallery
  * Plugin URI:  https://wordpress.org/plugins/simple-block-gallery/
  * Description: Add the effect of Masonry and Slider to images.
- * Version:     1.21
+ * Version:     1.22
  * Author:      Katsushi Kawamori
  * Author URI:  https://riverforest-wp.info/
  * License:     GPLv2 or later
