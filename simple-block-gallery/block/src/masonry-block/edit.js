@@ -26,9 +26,10 @@ export default function Edit( { attributes, setAttributes } ) {
 		const unique_id = Math.floor( Math.random() * 90000 ) + 10000;
 		let j = '<!-- wp:paragraph -->';
 		j += '<style type="text/css">';
-		j += '.simple-block-gallery-masonry' + unique_id + ' { display: block; columns: auto ' + attributes.width + 'px; column-gap: 0; padding: 0; }';
-		j += 'div.masonry' + unique_id + ' { display: block; padding-right: ' + attributes.padding + 'px; padding-bottom: ' + attributes.padding + 'px; margin: 0; line-height: 0; }';
-		j += 'div.masonry' + unique_id + ' img { max-width: 100%; height: auto; display: block; border-radius: ' + attributes.r_images + 'px; }';
+		j += '.simple-block-gallery-masonry' + unique_id + ' { display: block; column-width: ' + attributes.width + 'px; column-gap: 0; padding: 0; }';
+		j += 'div.masonry' + unique_id + ' { display: block; padding: ' + attributes.padding + 'px; }';
+		j += 'div.masonry' + unique_id + ' img {  display: block; border-radius: ' + attributes.r_images + 'px; }';
+		j += '.wp-block-image, figure { margin: 0 !important; padding: 0 !important; }';
 		j += '</style>';
 		j += '<div class="simple-block-gallery-masonry' + unique_id + '">';
 		for( let i in image ) {
