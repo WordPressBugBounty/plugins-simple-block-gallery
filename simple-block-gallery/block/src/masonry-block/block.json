@@ -6,7 +6,7 @@
   "parent": [ "simple-block-gallery/sbg-parent-block" ],
   "icon": "tagcloud",
   "description": "Generate the masonry gallery.",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "textdomain": "simple-block-gallery",
   "attributes": {
     "list_images": {

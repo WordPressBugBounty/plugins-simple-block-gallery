@@ -28,8 +28,13 @@ export default function Edit( { attributes, setAttributes } ) {
 		j += '<style type="text/css">';
 		j += '.simple-block-gallery-masonry' + unique_id + ' { display: block; column-width: ' + attributes.width + 'px; column-gap: 0; padding: 0; }';
 		j += 'div.masonry' + unique_id + ' { display: block; padding: ' + attributes.padding + 'px; }';
-		j += 'div.masonry' + unique_id + ' img {  display: block; border-radius: ' + attributes.r_images + 'px; }';
-		j += '.wp-block-image, figure { margin: 0 !important; padding: 0 !important; }';
+		j += 'div.masonry' + unique_id + ' img { display: block; border-radius: ' + attributes.r_images + 'px; }';
+		if ( 120 <= attributes.width ) {
+			j += 'div.masonry' + unique_id + ' figure figcaption { position: absolute; bottom: 0; left: 0; right: 0; width: 100%; background: rgba(0, 0, 0, 0.6); color: #fff; padding: 0.5em 1em; text-align: center; box-sizing: border-box; font-size: 0.7em; opacity: 0; transition: opacity 0.4s ease; border-radius: ' + attributes.r_images + 'px; }';
+			j += 'div.masonry' + unique_id + ' figure:hover figcaption { opacity: 1; }';
+			j += 'div.masonry' + unique_id + ' @media (max-width: 768px) { figure figcaption { opacity: 1; } }';
+		}
+		j += '.wp-block-image, figure figcaption { margin: 0 !important; padding: 0 !important; }';
 		j += '</style>';
 		j += '<div class="simple-block-gallery-masonry' + unique_id + '">';
 		for( let i in image ) {
@@ -37,6 +42,11 @@ export default function Edit( { attributes, setAttributes } ) {
 			j += '<!-- wp:image {"lightbox":{"enabled":' + attributes.link + '},"id":' + image[i].id + ',"sizeSlug":"large","linkDestination":"none"} -->';
 			j += '<figure class="wp-block-image size-large">';
 			j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '">';
+			if ( image[i].caption && 120 <= attributes.width ) {
+				j += '<figcaption>';
+				j += image[i].caption;
+				j += '</figcaption>';
+			}
 			j += '</figure>';
 			j += '<!-- /wp:image -->';
 			j += '</div>';
@@ -100,6 +110,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
 						label = { __( 'Width', 'simple-block-gallery' ) }
+						help = { __( 'If there is a caption, it will be overlaid with a size of 120 or larger on mouseover.', 'simple-block-gallery' ) }
 						max = { 1000 }
 						min = { 10 }
 						value = { attributes.width }

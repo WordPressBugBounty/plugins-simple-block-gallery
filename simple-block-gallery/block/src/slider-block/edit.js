@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { RangeControl, Button, PanelBody } from '@wordpress/components';
+import { RangeControl, Button, PanelBody, Card, CardBody } from '@wordpress/components';
 import { InspectorControls, InnerBlocks, MediaUpload, MediaUploadCheck, useBlockProps } from '@wordpress/block-editor';
 import { RawHTML } from '@wordpress/element';
 
@@ -55,12 +55,13 @@ export default function Edit( { attributes, setAttributes } ) {
 			j += '<figure>';
 			for( let i in image ) {
 				if ( 0 == i ) {
-					j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '" width="' + image[i].sizes.full.width + '" height="' + image[i].sizes.full.height + '" loading="eager">';
+					j += '<img src="' + image[i].url + '" title="' + image[i].caption + '" alt="' + image[i].alt + '" width="' + image[i].sizes.full.width + '" height="' + image[i].sizes.full.height + '" loading="eager">';
 				} else {
-					j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '" width="' + image[i].sizes.full.width + '" height="' + image[i].sizes.full.height + '" loading="lazy">';
+					j += '<img src="' + image[i].url + '" title="' + image[i].caption + '" alt="' + image[i].alt + '" width="' + image[i].sizes.full.width + '" height="' + image[i].sizes.full.height + '" loading="lazy">';
 				}
 			}
-			j += '</figure></div>';
+			j += '</figure>';
+			j += '</div>';
 		}
 		j += '<!-- /wp:paragraph -->';
 		return j;
@@ -124,6 +125,9 @@ export default function Edit( { attributes, setAttributes } ) {
 						value = { attributes.animation }
 						onChange = { ( value ) => setAttributes( { animation: value } ) }
 					/>
+					<Card>
+						<CardBody>{ __( 'If there is a caption, a tooltip will appear on mouseover.', 'simple-block-gallery' ) }</CardBody>
+					</Card>
 				</PanelBody>
 			</InspectorControls>
 		</div>
