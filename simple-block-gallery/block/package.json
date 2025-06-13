@@ -1,6 +1,6 @@
 {
   "name": "simple-block-gallery",
-  "version": "1.2.6",
+  "version": "1.2.8",
   "description": "Generate a Masonry or Slider gallery.",
   "main": "index.js",
   "scripts": {

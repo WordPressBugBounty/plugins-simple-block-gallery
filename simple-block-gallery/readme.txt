@@ -5,7 +5,7 @@ Tags: block, gallery, images, masonry, slider
 Requires at least: 6.6
 Requires PHP: 8.0
 Tested up to: 6.8
-Stable tag: 1.26
+Stable tag: 1.28
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,12 @@ none
 3. Slider Block
 
 == Changelog ==
+
+= [1.28] 2025/06/13 =
+* Fix - CSS.
+
+= [1.27] 2025/06/13 =
+* Fix - CSS.
 
 = [1.26] 2025/06/13 =
 * Fix - CSS.

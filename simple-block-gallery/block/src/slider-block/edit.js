@@ -49,10 +49,10 @@ export default function Edit( { attributes, setAttributes } ) {
 			j += '@keyframes slidy' + unique_id + ' { ' + slide_interval + '}';
 			j += '#slider' + unique_id + ' { overflow: hidden; margin: 0 auto; padding: 0; }';
 			j += '#slider' + unique_id + ' .slider-inner { position: relative; width: ' + 100 * image.length + '%; margin: 0; left: 0; font-size: 0; animation: ' + ( attributes.animation * image.length ) + 's slidy' + unique_id + ' infinite; display: flex; }';
-			j += '.slide { width: calc(100% / ' + image.length + ');   box-sizing: border-box; text-align: center; font-size: 1rem; position: relative; }';
-			j += '.slide img { width: 100%; height: auto; display: block; }';
-			j += 'figcaption { position: absolute; bottom: 0; width: 100%; background: rgba(0, 0, 0, 0.6); color: #fff; padding: 0.5rem; font-size: 0.9rem; opacity: 0; transition: opacity 0.3s; pointer-events: none; }';
-			j += '.slide:hover figcaption, .slide:focus-within figcaption { opacity: 1; pointer-events: auto; }';
+			j += '#slider' + unique_id + ' .slide { width: calc(100% / ' + image.length + ');   box-sizing: border-box; text-align: center; font-size: 1rem; position: relative; }';
+			j += '#slider' + unique_id + ' .slide img { width: 100%; height: auto; display: block; }';
+			j += '#slider' + unique_id + ' figcaption { position: absolute; top: 0; width: 100%; background: rgba(0, 0, 0, 0.6); color: #fff; padding: 0.5rem; font-size: 0.9rem; opacity: 0; transition: opacity 0.3s; pointer-events: none; }';
+			j += '#slider' + unique_id + ' .slide:hover figcaption, .slide:focus-within figcaption { opacity: 1; pointer-events: auto; }';
 			j += '</style>';
 			j += '<div id="slider' + unique_id + '">';
 			j += '<div class="slider-inner">';
