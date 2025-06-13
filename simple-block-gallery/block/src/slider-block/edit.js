@@ -47,20 +47,26 @@ export default function Edit( { attributes, setAttributes } ) {
 			slide_interval += ' 100% { left: 0%; }';
 			j += '<style type="text/css">';
 			j += '@keyframes slidy' + unique_id + ' { ' + slide_interval + '}';
-			j += 'div#slider' + unique_id + ' { overflow: hidden; margin: 0 auto; padding: 0; }';
-			j += 'div#slider' + unique_id + ' figure img { width: ' + 100 / image.length + '%; height: auto; float: left; }';
-			j += 'div#slider' + unique_id + ' figure { position: relative; width: ' + 100 * image.length + '%; margin: 0; left: 0; text-align: left; font-size: 0; animation: ' + ( attributes.animation * image.length ) + 's slidy' + unique_id + ' infinite; }';
+			j += '#slider' + unique_id + ' { overflow: hidden; margin: 0 auto; padding: 0; }';
+			j += '#slider' + unique_id + ' .slider-inner { position: relative; width: ' + 100 * image.length + '%; margin: 0; left: 0; font-size: 0; animation: ' + ( attributes.animation * image.length ) + 's slidy' + unique_id + ' infinite; display: flex; }';
+			j += '.slide { width: calc(100% / ' + image.length + ');   box-sizing: border-box; text-align: center; font-size: 1rem; position: relative; }';
+			j += '.slide img { width: 100%; height: auto; display: block; }';
+			j += 'figcaption { position: absolute; bottom: 0; width: 100%; background: rgba(0, 0, 0, 0.6); color: #fff; padding: 0.5rem; font-size: 0.9rem; opacity: 0; transition: opacity 0.3s; pointer-events: none; }';
+			j += '.slide:hover figcaption, .slide:focus-within figcaption { opacity: 1; pointer-events: auto; }';
 			j += '</style>';
 			j += '<div id="slider' + unique_id + '">';
-			j += '<figure>';
+			j += '<div class="slider-inner">';
 			for( let i in image ) {
+				j += '<figure class="slide">';
 				if ( 0 == i ) {
-					j += '<img src="' + image[i].url + '" title="' + image[i].caption + '" alt="' + image[i].alt + '" width="' + image[i].sizes.full.width + '" height="' + image[i].sizes.full.height + '" loading="eager">';
+					j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '" width="' + image[i].sizes.full.width + '" height="' + image[i].sizes.full.height + '" loading="eager">';
 				} else {
-					j += '<img src="' + image[i].url + '" title="' + image[i].caption + '" alt="' + image[i].alt + '" width="' + image[i].sizes.full.width + '" height="' + image[i].sizes.full.height + '" loading="lazy">';
+					j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '" width="' + image[i].sizes.full.width + '" height="' + image[i].sizes.full.height + '" loading="lazy">';
 				}
+				j += '<figcaption>' + image[i].caption + '</figcaption>'
+				j += '</figure>';
 			}
-			j += '</figure>';
+			j += '</div>';
 			j += '</div>';
 		}
 		j += '<!-- /wp:paragraph -->';
@@ -126,7 +132,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange = { ( value ) => setAttributes( { animation: value } ) }
 					/>
 					<Card>
-						<CardBody>{ __( 'If there is a caption, a tooltip will appear on mouseover.', 'simple-block-gallery' ) }</CardBody>
+						<CardBody>{ __( 'If there is a caption, it will be overlayed on mouseover/tap.', 'simple-block-gallery' ) }</CardBody>
 					</Card>
 				</PanelBody>
 			</InspectorControls>

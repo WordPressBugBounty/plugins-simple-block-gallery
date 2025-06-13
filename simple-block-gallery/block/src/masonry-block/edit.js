@@ -31,8 +31,8 @@ export default function Edit( { attributes, setAttributes } ) {
 		j += 'div.masonry' + unique_id + ' img { display: block; width: 100%; border-radius: ' + attributes.r_images + 'px; }';
 		if ( 120 <= attributes.width ) {
 			j += 'div.masonry' + unique_id + ' figure { position: relative; }';
-			j += 'div.masonry' + unique_id + ' figcaption { position: absolute; bottom: 0; left: 0; right: 0; width: 100%; background: rgba(0, 0, 0, 0.6); color: #fff; text-align: center; box-sizing: border-box; font-size: 0.7em; opacity: 0; transition: opacity 0.4s ease; border-radius: ' + attributes.r_images + 'px; }';
-			j += 'div.masonry' + unique_id + ' figure:hover figcaption { opacity: 1; }';
+			j += 'div.masonry' + unique_id + ' figcaption { position: absolute; bottom: 0; left: 0; right: 0; width: 100%; background: rgba(0, 0, 0, 0.6); color: #fff; text-align: center; box-sizing: border-box; font-size: 0.7em; opacity: 0; transition: opacity 0.4s ease; border-radius: ' + attributes.r_images + 'px;  pointer-events: none; }';
+			j += 'div.masonry' + unique_id + ' figure:hover figcaption,' + 'div.masonry' + unique_id + ' figure.show-caption figcaption { opacity: 1; pointer-events: auto; }';
 			j += 'div.masonry' + unique_id + ' @media (max-width: 768px) { figure figcaption { opacity: 1; } }';
 		}
 		j += '.wp-block-image, figure figcaption { margin: 0 !important; padding: 0 !important; }';
@@ -111,7 +111,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
 						label = { __( 'Width', 'simple-block-gallery' ) }
-						help = { __( 'If there is a caption, it will be overlaid with a size of 120 or larger on mouseover.', 'simple-block-gallery' ) }
+						help = { __( 'If there is a caption, it will be overlaid with a size of 120 or larger on mouse-over/tap.', 'simple-block-gallery' ) }
 						max = { 1000 }
 						min = { 10 }
 						value = { attributes.width }
