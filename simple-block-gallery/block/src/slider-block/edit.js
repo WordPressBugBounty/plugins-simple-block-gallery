@@ -63,7 +63,9 @@ export default function Edit( { attributes, setAttributes } ) {
 				} else {
 					j += '<img src="' + image[i].url + '" alt="' + image[i].alt + '" width="' + image[i].sizes.full.width + '" height="' + image[i].sizes.full.height + '" loading="lazy">';
 				}
-				j += '<figcaption>' + image[i].caption + '</figcaption>'
+				if ( image[i].caption ) {
+					j += '<figcaption>' + image[i].caption + '</figcaption>'
+				}
 				j += '</figure>';
 			}
 			j += '</div>';
